@@ -11,6 +11,7 @@
     "react-scripts": "1.1.0",
     "react-select": "^1.2.1"
   },
+  "homepage": "http://rahulgaba.com/sf-muni",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
