@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import './App.css';
 import * as d3 from 'd3';
 import BaseMap from './components/BaseMap.component'
 import Buses from './components/Buses.component'
 import Loader from 'react-loader-spinner';
-import baseMapData from './fixtures';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import uniqBy from 'lodash/uniqBy';
 import {getLocationsforTag, getRouteList} from './api';
 
-class App extends Component {
+class App extends PureComponent {
   state = {
     busesLocations: [],
     loaderVisibility: true,
     routeTags: [],
-    selectedTags: []
+    selectedTags: [],
+    baseMapData: {}
   }
   SYNC_INTERVAL = 15000
 
@@ -46,7 +46,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getRouteList()
+    import('./fixtures') //import dynamically to reduce bundle size
+      .then((mapFixtures) => {
+        this.setState({baseMapData: mapFixtures.default})
+      })
+      .then(getRouteList)
       .then((routeTags) => {
         this.setState({routeTags});
         this.busesSyncInterval = setInterval(this.updateBusesLocation, this.SYNC_INTERVAL)
@@ -80,7 +84,7 @@ class App extends Component {
         <button className='Select-control' onClick={this.showAllRoutes}>Show All routes</button>
         <button className='Select-control' onClick={this.sync}>Sync</button>
         <svg viewBox={`0 0 ${window.innerWidth} ${window.innerHeight}`}>
-          <BaseMap projection={this.projection} baseMapData={baseMapData}></BaseMap>
+          <BaseMap projection={this.projection} baseMapData={this.state.baseMapData}></BaseMap>
           <Buses busesLocation={this.state.busesLocations} projection={this.projection}></Buses>
         </svg>
         {this.state.loaderVisibility ? <div className='loader' >
