@@ -19,7 +19,6 @@ export default class Buses extends PureComponent {
   }
   render() {
     const {busesLocation} = this.props;
-    console.log('busesLocation',busesLocation);
     return <g className='vehicles'>
     {busesLocation.map(this.getVehicle)}
     </g>

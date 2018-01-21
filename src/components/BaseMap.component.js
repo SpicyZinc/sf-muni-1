@@ -16,6 +16,7 @@ export default class BaseMap extends PureComponent {
       strokeWidth={ 0.5 }
     />
   )}
+
   render() {
     const {baseMapData} = this.props;
     const baseMap = Object.keys(baseMapData).map((mapType)=>{

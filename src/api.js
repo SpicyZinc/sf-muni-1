@@ -1,4 +1,4 @@
-let lastSyncTime = '';
+let lastSyncTime = '0';
 const BASE_URL = 'http://webservices.nextbus.com/service/publicJSONFeed';
 
 export const getLocationsforTag = ({tag}) => {
