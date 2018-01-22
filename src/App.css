@@ -8,7 +8,7 @@ body {
 .Select-control {
   margin-bottom: 10px
 }
-button {
+button.Select-control {
   cursor: pointer;
 }
 .loader {
