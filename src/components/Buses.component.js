@@ -1,8 +1,6 @@
 import React, {PureComponent} from "react"
 
 export default class Buses extends PureComponent {
-  onVehicleClick = (vehicle) => () => console.log(vehicle)
-
   getVehicle = (vehicle, i)=>{
     const [lon, lat] = this.props.projection([vehicle.lon, vehicle.lat]);
     return <image
@@ -14,7 +12,6 @@ export default class Buses extends PureComponent {
             width='20px'
             height='20px'
             transform='translate(-10 -10)'
-            onClick={this.onVehicleClick(vehicle)}
           ></image>
   }
   render() {

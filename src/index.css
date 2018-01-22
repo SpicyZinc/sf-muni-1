@@ -2,4 +2,31 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #E5E6E8;
+  padding: 20px;
+}
+.Select-control {
+  margin-bottom: 10px
+}
+button.Select-control {
+  cursor: pointer;
+}
+.map-container {
+  background-color: #90caf9;
+}
+.loader {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #00000075;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vehicle {
+  transition: x 1s ease, y 1s ease;
 }

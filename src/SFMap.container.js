@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import './App.css';
 import * as d3 from 'd3';
 import BaseMap from './components/BaseMap.component'
 import Buses from './components/Buses.component'
@@ -75,6 +74,9 @@ class App extends PureComponent {
   sync = () => this.updateBusesLocation({showLoader: true})
 
   render() {
+    const width = window.innerWidth - 40;
+    const height = window.innerHeight  - 40;
+    const dimensions = {width, height};
     return (
       <div className="App">
         <h2 align='center'>SF Muni tracking using D3.js</h2>
@@ -83,10 +85,12 @@ class App extends PureComponent {
             labelKey='title' placeholder="Please select route tags to display on the map" value={this.state.selectedTags} />
         <button className='Select-control' onClick={this.showAllRoutes}>Show All routes</button>
         <button className='Select-control' onClick={this.sync}>Sync</button>
-        <svg viewBox={`0 0 ${window.innerWidth} ${window.innerHeight}`}>
-          <BaseMap projection={this.projection} baseMapData={this.state.baseMapData}></BaseMap>
-          <Buses busesLocation={this.state.busesLocations} projection={this.projection}></Buses>
-        </svg>
+        <div className='map-container'>
+          <svg {...dimensions} viewBox={`0 0 ${width} ${height}`}>
+            <BaseMap projection={this.projection} baseMapData={this.state.baseMapData}></BaseMap>
+            <Buses busesLocation={this.state.busesLocations} projection={this.projection}></Buses>
+          </svg>
+        </div>
         {this.state.loaderVisibility ? <div className='loader' >
           <Loader type="Bars" height={100} width={100} color="#ffffff" />
         </div> : null}
