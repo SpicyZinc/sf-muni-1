@@ -2,6 +2,8 @@
 
 Real-time positions of San Francisco's buses and trains http://sf-muni-d3.herokuapp.com
 
+Built using [React.JS](https://reactjs.org/) and [d3](https://www.npmjs.com/package/d3)
+
 ### Run on Local
 
 + Clone the repo
