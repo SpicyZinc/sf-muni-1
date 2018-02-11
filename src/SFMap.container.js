@@ -45,11 +45,14 @@ class App extends PureComponent {
   }
 
   componentDidMount() {
-    import('./fixtures') //import dynamically to reduce bundle size
-      .then((mapFixtures) => {
-        this.setState({baseMapData: mapFixtures.default})
-      })
-      .then(getRouteList)
+    const cacheFiles = ['arteries','freeways', 'neighborhoods', 'streets'];
+    cacheFiles.forEach((filePath)=> {
+      fetch(`/sf-muni/fixtures/${filePath}.json`).then(res=> res.json())
+        .then((mapFixtures) => {
+          this.setState({baseMapData: {...this.state.baseMapData, [filePath]: mapFixtures}})
+        })
+    })
+    getRouteList()
       .then((routeTags) => {
         this.setState({routeTags});
         this.busesSyncInterval = setInterval(this.updateBusesLocation, this.SYNC_INTERVAL)
