@@ -36,8 +36,8 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script>
-      document.addEventListener('DOMContentLoaded', ()=> {
-        navigator.serviceWorker.register('./worker.js')
+    location.protocol === 'https:' && document.addEventListener('DOMContentLoaded', ()=> {
+        navigator.serviceWorker.register('%PUBLIC_URL%/worker.js')
           .then(()=>console.log('service worker registered'))
       })
     </script>
