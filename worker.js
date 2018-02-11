@@ -1,4 +1,4 @@
-const origin = 'https://rahulgaba.com/sf-muni'
+const origin = 'http://rahulgaba.com/sf-muni'
 const cacheFiles = [`${origin}/fixtures/arteries.json`,`${origin}/fixtures/freeways.json`, `${origin}/fixtures/neighborhoods.json`, `${origin}/fixtures/streets.json`];
 
 self.addEventListener('install', (event) => {
